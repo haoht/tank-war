@@ -1,4 +1,4 @@
-package v1_0;
+package v2_0;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,14 +7,14 @@ import java.awt.*;
  * 1.0
  * 1.画出坦克
  */
-public class TankWar1 extends JFrame {
+public class TankWar2 extends JFrame {
     MyPanel mp = null;
 
     public static void main(String[] args) {
-        new TankWar1();
+        new TankWar2();
     }
 
-    public TankWar1() throws HeadlessException {
+    public TankWar2() throws HeadlessException {
         mp = new MyPanel();
         this.add(mp);
         this.setSize(400, 300);
