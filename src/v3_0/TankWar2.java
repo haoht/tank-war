@@ -1,4 +1,4 @@
-package v2_0;
+package v3_0;
 
 import javax.swing.*;
 import java.awt.*;
@@ -144,19 +144,19 @@ class MyPanel extends JPanel implements KeyListener {
 
     @Override // 按下a向左，s向下，w向上，d向右
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
             // 设置坦克方向 默认向上
             this.myTank.setDirect(0);
             this.myTank.moveUp();
-        } else if (e.getKeyCode() == KeyEvent.VK_A) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             // 向左
             this.myTank.setDirect(3);
             this.myTank.moveLeft();
-        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             // 向右
             this.myTank.setDirect(1);
             this.myTank.moveRight();
-        } else if (e.getKeyCode() == KeyEvent.VK_S) {
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             // 向下
             this.myTank.setDirect(2);
             this.myTank.moveDown();

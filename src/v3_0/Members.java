@@ -1,4 +1,4 @@
-package v2_0;
+package v3_0;
 
 /**
  * 坦克类
@@ -63,7 +63,7 @@ class Tank {
 /**
  * 敌人的坦克
  */
-class EnemyTank extends Tank{
+class EnemyTank extends Tank {
     public EnemyTank(int x, int y) {
         super(x, y);
     }
