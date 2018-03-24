@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.TreeMap;
 import java.util.Vector;
 
 /**
@@ -23,6 +24,9 @@ public class TankWar2 extends JFrame {
         this.add(mp);
         // 注册监听
         this.addKeyListener(mp);
+        // 启动mp线程
+        Thread t = new Thread(mp);
+        t.start();
         this.setSize(400, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -32,7 +36,7 @@ public class TankWar2 extends JFrame {
 /**
  * 我的面板
  */
-class MyPanel extends JPanel implements KeyListener {
+class MyPanel extends JPanel implements KeyListener, Runnable {
     // 定义一个我的坦克
     MyTank myTank = null;
 
@@ -59,9 +63,26 @@ class MyPanel extends JPanel implements KeyListener {
         g.fillRect(0, 0, 400, 300);
         // 画出我的坦克
         this.drawTank(myTank.getX(), myTank.getY(), g, myTank.getDirect(), 1);
+        // 画出我的子弹
+        if (this.myTank.shots != null && this.myTank.shots.isLive == true) {
+            g.draw3DRect(this.myTank.shots.getX(), this.myTank.shots.getY(), 1, 1, false);
+        }
         // 画出敌人坦克
         for (int i = 0; i < enemyTank.size(); i++) {
             this.drawTank(enemyTank.get(i).getX(), enemyTank.get(i).getY(), g, enemyTank.get(i).getDirect(), 0);
+        }
+    }
+
+    @Override
+    public void run() {
+        // 每隔100毫秒重绘
+        while (true) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.repaint();
         }
     }
 
@@ -160,6 +181,11 @@ class MyPanel extends JPanel implements KeyListener {
             // 向下
             this.myTank.setDirect(2);
             this.myTank.moveDown();
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_X) {
+            // 判断是否按下发火
+            this.myTank.shotEnemy();
         }
         // 重新绘制panel
         this.repaint();

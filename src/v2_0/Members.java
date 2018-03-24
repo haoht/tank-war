@@ -63,7 +63,7 @@ class Tank {
 /**
  * 敌人的坦克
  */
-class EnemyTank extends Tank{
+class EnemyTank extends Tank {
     public EnemyTank(int x, int y) {
         super(x, y);
     }
@@ -73,6 +73,7 @@ class EnemyTank extends Tank{
  * 我的坦克
  */
 class MyTank extends Tank {
+
 
     public MyTank(int x, int y) {
         super(x, y);

@@ -73,9 +73,32 @@ class EnemyTank extends Tank {
  * 我的坦克
  */
 class MyTank extends Tank {
+    // 子弹
+    Shots shots = null;
 
     public MyTank(int x, int y) {
         super(x, y);
+    }
+
+    // 开火
+    public void shotEnemy() {
+        switch (this.direct) {
+            case 0:
+                shots = new Shots(x + 9, y - 2, 0);
+                break;
+            case 1:
+                shots = new Shots(x + 25, y + 9, 1);
+                break;
+            case 2:
+                shots = new Shots(x + 9, y + 30, 2);
+                break;
+            case 3:
+                shots = new Shots(x - 7, y + 9, 3);
+                break;
+        }
+        // 启动子弹线程
+        Thread t = new Thread(shots);
+        t.start();
     }
 
     // 坦克向上移动
